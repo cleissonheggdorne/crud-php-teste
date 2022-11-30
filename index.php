@@ -1,10 +1,8 @@
 <?php
+require 'Controller/control.php';
 
-require 'connection.php';
-
-$connection = new Connection();
-
-$users = $connection->query("SELECT * FROM users");
+$ctrl = new Control();
+$users = $ctrl->ctrlQuery();
 
 echo "<table border='1'>
 
