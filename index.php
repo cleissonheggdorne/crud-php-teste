@@ -1,32 +1,32 @@
 <?php
-require 'Controller/control.php';
+require_once "Controller/control.php";
 
-$ctrl = new Control();
-$users = $ctrl->ctrlQuery();
+$route = $_SERVER["REQUEST_URI"];
+$method = $_SERVER["REQUEST_METHOD"];
 
-echo "<table border='1'>
 
-    <tr>
-        <th>ID</th>    
-        <th>Nome</th>    
-        <th>Email</th>
-        <th>Ação</th>    
-    </tr>
-";
-
-foreach($users as $user) {
-
-    echo sprintf("<tr>
-                      <td>%s</td>
-                      <td>%s</td>
-                      <td>%s</td>
-                      <td>
-                           <a href='#'>Editar</a>
-                           <a href='#'>Excluir</a>
-                      </td>
-                   </tr>",
-        $user->id, $user->name, $user->email);
+if($method === 'GET'){
+    if($route === '/')
+    {
+        require "Views/usuarios.php";
+        exit;
+    } else if ( (substr($route, 0, strlen("/edit"))  === "/edit")||(substr($route, 0, strlen("/newUser"))  === "/newUser") ){
+        require "Views/edit_user.php";
+        exit;
+    }
+}else if($method === 'POST'){
+    if (substr($route, 0, strlen("/edit"))  === "/edit"){
+        $control = new Control();
+        $control->ctrlUpdate($_REQUEST);
+        header('Location: /');
+    } else if (substr($route, 0, strlen("/newUser"))  === "/newUser"){
+         $control = new Control();
+         $control->ctrlInsert($_REQUEST);
+         header('Location: /');
+     }
+}else if($method ==='DELETE'){
+    $control = new Control();
+    $control->ctrlDelete($_REQUEST);
+    header('Location: /');
 
 }
-
-echo "</table>";

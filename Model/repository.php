@@ -10,25 +10,41 @@ class repository{
     }
 
     public function query(){
-        return($this->conn->query("SELECT * FROM users"));
+        $query = "SELECT * FROM users";
+        $result = $this->conn->getConnection()->query($query);
+        $result->setFetchMode(PDO::FETCH_INTO, new stdClass);
+        return $result;
     }
 
-    public function insert(){
-    }
-
-    public function delete(){
-    }
-
-    public function update($dados){
-        $sql = "UPDATE users SET name = :name AND email= :email";    
-        $stmt = $this->conexao->prepare($sql);
+    public function insert(object $dados){
+        $sql = " INSERT INTO users(name, email) VALUES (:name, :email)";    
+        $stmt = $this->conn->getConnection()->prepare($sql);
 
         $stmt->bindValue(':name', $dados->name, PDO::PARAM_STR); 
         $stmt->bindValue(':email', $dados->email,  PDO::PARAM_STR );
+
         $stmt->execute();
-        
-        //$dadosRetornados = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+       
+    } 
+
+    public function delete(object $dados){
+        $sql = "DELETE FROM users WHERE id= :id";    
+        $stmt = $this->conn->getConnection()->prepare($sql);
+
+        $stmt->bindValue(':id', $dados->id,  PDO::PARAM_STR );
+
+        $stmt->execute();        
+    }
+
+    public function update(object $dados){
+        $sql = "UPDATE users SET name = :name, email= :email WHERE id= :id";    
+        $stmt = $this->conn->getConnection()->prepare($sql);
+
+        $stmt->bindValue(':name', $dados->name, PDO::PARAM_STR); 
+        $stmt->bindValue(':email', $dados->email,  PDO::PARAM_STR );
+        $stmt->bindValue(':id', $dados->id,  PDO::PARAM_STR );
+
+        $stmt->execute();        
     }
    
 }

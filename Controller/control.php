@@ -9,18 +9,23 @@ class Control{
         $qry = $repo->query();
         return $qry;
     }
-    public function ctrlInsert()
+    public function ctrlInsert($dados)
     {
+        $dados = (object) $dados;
         $repo = new repository();
+        $repo->insert($dados);
        
     }
-    public function ctrlDelete()
+    public function ctrlDelete($dados)
     {
+        $dados = (object) $dados;
         $repo = new repository();
+        $repo->delete($dados);
     
     }
-    public function ctrlUpdate($dados)
+    public function ctrlUpdate($request)
     {
+        $dados = (object) $request;
         $repo = new repository();
         $repo->update($dados);
     }
