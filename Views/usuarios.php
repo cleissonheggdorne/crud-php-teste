@@ -22,9 +22,7 @@ foreach($users as $user) {
                       <td>%s</td>
                       <td>
                            <a href='/edit?id=%s&nome=%s&email=%s'>Editar</a>
-                           <form method='delete'>
-                            <a href='/?id=%s'>Excluir</a>
-                           </form>
+                            <a href='/delete?id=%s'>Excluir</a>
                       </td>
                    </tr>",
         $user->id, $user->name, $user->email, $user->id, $user->name, $user->email, $user->id);

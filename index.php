@@ -13,20 +13,23 @@ if($method === 'GET'){
     } else if ( (substr($route, 0, strlen("/edit"))  === "/edit")||(substr($route, 0, strlen("/newUser"))  === "/newUser") ){
         require "Views/edit_user.php";
         exit;
+    } else if ( (substr($route, 0, strlen("/delete"))  === "/delete")){
+        $control = new Control();
+        $control->ctrlDelete($_REQUEST);
+        header('Location: /');
+        exit;
     }
 }else if($method === 'POST'){
     if (substr($route, 0, strlen("/edit"))  === "/edit"){
         $control = new Control();
         $control->ctrlUpdate($_REQUEST);
         header('Location: /');
+        exit;
     } else if (substr($route, 0, strlen("/newUser"))  === "/newUser"){
          $control = new Control();
          $control->ctrlInsert($_REQUEST);
          header('Location: /');
+         exit;
      }
-}else if($method ==='DELETE'){
-    $control = new Control();
-    $control->ctrlDelete($_REQUEST);
-    header('Location: /');
-
 }
+    
