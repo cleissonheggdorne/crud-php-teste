@@ -9,6 +9,12 @@ class Control{
         $qry = $repo->query();
         return $qry;
     }
+    public function ctrlQueryColors()
+    {
+        $repo = new repository();
+        $qry = $repo->queryColors();
+        return $qry;
+    }
     public function ctrlInsert($dados)
     {
         $dados = (object) $dados;

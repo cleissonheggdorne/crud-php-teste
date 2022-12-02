@@ -16,6 +16,13 @@ class repository{
         return $result;
     }
 
+    public function queryColors(){
+        $query = "SELECT * FROM colors";
+        $result = $this->conn->getConnection()->query($query);
+        $result->setFetchMode(PDO::FETCH_INTO, new stdClass);
+        return $result;
+    }
+
     public function insert(object $dados){
         $sql = " INSERT INTO users(name, email) VALUES (:name, :email)";    
         $stmt = $this->conn->getConnection()->prepare($sql);

@@ -18,6 +18,10 @@ if($method === 'GET'){
         $control->ctrlDelete($_REQUEST);
         header('Location: /');
         exit;
+    }else if((substr($route, 0, strlen("/vincular-cores"))  === "/vincular-cores"))
+    {
+        require "Views/cores.php";
+        exit;
     }
 }else if($method === 'POST'){
     if (substr($route, 0, strlen("/edit"))  === "/edit"){
