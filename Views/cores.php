@@ -10,17 +10,18 @@ $colors = $ctrl->ctrlQueryColors();
         <input id="input_id_user" type="hidden" value=''></input>
        
         
-        <ul class="collection with-header">
-        <li class="collection-header"><h4><?=$_GET['nome']?></h4></li>
+        <h4><?=$_GET['nome']?></h4>
+        <ul class="collection">
         <form action="#" class="col s12">
-        <?php foreach($colors as $color){ ?>
-            <li class="collection-item"><?= $color->name ?></li>
-            <!-- <input type="checkbox" id="<?= $color->id ?>" /> -->
-            <!-- <label for="<?= $color->id ?>"><?= $color->name ?></label> -->
-         
-        <?php } ?>
+            <?php foreach($colors as $color){ ?>
+                <li class="collection-item">
+                    <input type="checkbox" name="cores[]" id="<?= $color->id ?>" value="<?= $color->id ?>" />
+                    <label for="<?= $color->id ?>"><?= $color->name ?></label>
+                </li>
+            <?php } ?>
+        </ul>
+            <a class="btn" href="#" type="submit">Vincular</a>
         </form>
-      </ul>
     </div>
     
 </body>
