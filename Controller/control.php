@@ -35,4 +35,10 @@ class Control{
         $repo = new repository();
         $repo->update($dados);
     }
+    public function ctrlInsertColor($request)
+    {
+        $dados = $request;
+        $repo = new repository();
+        $repo->insertColor($dados);
+    }
 }

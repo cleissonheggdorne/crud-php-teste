@@ -4,7 +4,6 @@ require_once "Controller/control.php";
 $route = $_SERVER["REQUEST_URI"];
 $method = $_SERVER["REQUEST_METHOD"];
 
-
 if($method === 'GET'){
     if($route === '/')
     {
@@ -18,9 +17,11 @@ if($method === 'GET'){
         $control->ctrlDelete($_REQUEST);
         header('Location: /');
         exit;
-    }else if((substr($route, 0, strlen("/vincular-cores"))  === "/vincular-cores"))
-    {
-        require "Views/cores.php";
+    }else if((substr($route, 0, strlen("/vincular-cores"))  === "/vincular-cores")){
+        require "Views/color.php";
+        exit;
+    }else if($route === '/teste'){
+        require "test/test.php";
         exit;
     }
 }else if($method === 'POST'){
@@ -34,6 +35,14 @@ if($method === 'GET'){
          $control->ctrlInsert($_REQUEST);
          header('Location: /');
          exit;
-     }
+    } else if((substr($route, 0, strlen("/vincular-cores"))  === "/vincular-cores")){
+         $control = new Control();
+         $control->ctrlInsertColor($_REQUEST);
+         header('Location: /');
+         exit;
+    } else if($route === '/teste'){
+        require "test/test.php";
+        exit;
+    }
 }
     
