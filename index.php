@@ -7,7 +7,7 @@ $method = $_SERVER["REQUEST_METHOD"];
 if($method === 'GET'){
     if($route === '/')
     {
-        require "Views/usuarios.php";
+        require "Views/users.php";
         exit;
     } else if ( (substr($route, 0, strlen("/edit"))  === "/edit")||(substr($route, 0, strlen("/newUser"))  === "/newUser") ){
         require "Views/edit_user.php";
@@ -17,7 +17,7 @@ if($method === 'GET'){
         $control->ctrlDelete($_REQUEST);
         header('Location: /');
         exit;
-    }else if((substr($route, 0, strlen("/vincular-cores"))  === "/vincular-cores")){
+    }else if((substr($route, 0, strlen("/link-colors"))  === "/link-colors")){
         require "Views/color.php";
         exit;
     }else if($route === '/teste'){
@@ -35,7 +35,7 @@ if($method === 'GET'){
          $control->ctrlInsert($_REQUEST);
          header('Location: /');
          exit;
-    } else if((substr($route, 0, strlen("/vincular-cores"))  === "/vincular-cores")){
+    } else if((substr($route, 0, strlen("/link-colors"))  === "/link-colors")){
          $control = new Control();
          $control->ctrlInsertColor($_REQUEST);
          header('Location: /');

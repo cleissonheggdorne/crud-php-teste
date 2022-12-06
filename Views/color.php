@@ -8,7 +8,7 @@ $colors = $ctrl->ctrlQueryColors();
     <div class="container">    
         <h4><?=$_GET['nome']?></h4>
         <ul class="collection">
-        <form method="post" action="/vincular-cores" class="col s12">
+        <form method="post" action="/link-colors" class="col s12">
             <input id="input_id_user" name="id_user" type="hidden" value='<?=$_GET['id']?>'></input>
             <?php foreach($colors as $color): ?>
                 <li class="collection-item">

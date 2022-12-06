@@ -60,7 +60,7 @@ class repository{
         $stmt->execute();        
     }
 
-    public function insertColor($dados){
+    public function insertColor(array $dados){
         $user = $dados['id_user'];
         $colors = (array_key_exists('colors', $dados))? $dados['colors'] : [0];
 
@@ -98,7 +98,7 @@ class repository{
         }
     }
 
-    private function deleteColorUser($user, $colors){
+    private function deleteColorUser(int $user, array $colors){
         /**
          * Construção de matriz e conversão em cadeia de caracteres para uso do IN do DELETE
          */

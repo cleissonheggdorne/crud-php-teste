@@ -18,7 +18,6 @@
             <ul id="nav-mobile" class="right">
               <li><a href="/">Inicio</a></li>
               <li><a href="/newUser">Novo Usuário</a></li>
-              <li><a href="/newCor">Nova Cor</a></li>
             </ul>
           </div>
         </nav>
